@@ -19,6 +19,11 @@ class PageIterator implements Iterator
         $this->meta = $meta;
     }
 
+    public function isCurrentPage()
+    {
+        return $this->current() === $this->meta->page;
+    }
+
     public function current()
     {
         return $this->pages[$this->position];

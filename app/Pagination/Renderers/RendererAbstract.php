@@ -3,7 +3,7 @@
 namespace App\Pagination\Renderers;
 
 use App\Pagination\Meta;
-use App\Paginations\PageIterator;
+use App\Pagination\PageIterator;
 
 abstract class RendererAbstract
 {

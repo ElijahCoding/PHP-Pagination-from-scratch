@@ -11,8 +11,26 @@ class PlainRenderer extends RendererAbstract
     {
         $iterator = $this->pages();
 
+        $html = '<ul>';
+
         foreach ($iterator as $page) {
-            dump($page);
+            if ($iterator->isCurrentPage()) {
+                $html .= '<li>
+                <strong><a href="">' . $page . '</a></strong>
+                </li>';
+            }
+            $html .= '<li>
+                <a href="">' . $page . '</a>
+            </li>';
         }
+
+        $html .= '</ul>';
+
+        return $html;
+    }
+
+    protected function query()
+    {
+        
     }
 }

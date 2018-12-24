@@ -26,4 +26,4 @@ $builder = new Builder($queryBuilder);
 $users = $builder->paginate($_GET['page'] ?? 1, 10);
 
 // dump($users->get());
-$users->render();
+echo $users->render();
