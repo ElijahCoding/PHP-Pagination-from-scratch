@@ -7,7 +7,7 @@ use App\Pagination\Renderers\RendererAbstract;
 
 class PlainRenderer extends RendererAbstract
 {
-    public function render()
+    public function render(array $extra = [])
     {
         $iterator = $this->pages();
 
@@ -15,25 +15,25 @@ class PlainRenderer extends RendererAbstract
 
         if ($iterator->hasPrevious()) {
             $html .= '<li>
-                <a href="' . $this->query($this->meta->page - 1) . '">Previous</a>
+                <a href="' . $this->query($this->meta->page - 1, $extra) . '">Previous</a>
             </li>';
         }
 
         foreach ($iterator as $page) {
             if ($iterator->isCurrentPage()) {
                 $html .= '<li>
-                    <strong><a href="' . $this->query($page) . '">' . $page . '</a></strong>
+                    <strong><a href="' . $this->query($page, $extra) . '">' . $page . '</a></strong>
                 </li>';
             } else {
                 $html .= '<li>
-                    <a href="' . $this->query($page) . '">' . $page . '</a>
+                    <a href="' . $this->query($page, $extra) . '">' . $page . '</a>
                 </li>';
             }
         }
 
         if ($iterator->hasNext()) {
             $html .= '<li>
-                <a href="' . $this->query($this->meta->page + 1) . '">Next</a>
+                <a href="' . $this->query($this->meta->page + 1, $extra) . '">Next</a>
             </li>';
         }
 
@@ -42,8 +42,8 @@ class PlainRenderer extends RendererAbstract
         return $html;
     }
 
-    protected function query($page)
+    protected function query($page, array $extra = [])
     {
-        return '?page=' . $page;
+        return '?page=' . $page . '&' . http_build_query($extra);
     }
 }
