@@ -20,7 +20,7 @@ class Builder
 
         $total = $this->builder->execute()->rowCount();
 
-        $result = $this->builder
+        $results = $this->builder
                        ->setFirstResult(
                             $this->getFirstResultIndex($page, $perPage)
                         )
@@ -29,7 +29,7 @@ class Builder
                        ->fetchAll();
 
         return new Results(
-            $result,
+            $results,
             new Meta($page, $perPage, $total)
         );
     }

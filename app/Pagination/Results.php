@@ -15,4 +15,14 @@ class Results
         $this->results = $results;
         $this->meta = $meta;
     }
+
+    public function get()
+    {
+        return $this->results;
+    }
+
+    public function render()
+    {
+
+    }
 }
