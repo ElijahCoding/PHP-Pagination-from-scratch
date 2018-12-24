@@ -9,6 +9,10 @@ class PlainRenderer extends RendererAbstract
 {
     public function render()
     {
-        dump($this->pages());
+        $iterator = $this->pages();
+
+        foreach ($iterator as $page) {
+            dump($page);
+        }
     }
 }
