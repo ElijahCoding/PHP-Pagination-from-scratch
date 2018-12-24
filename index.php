@@ -23,4 +23,4 @@ $queryBuilder->select('*')
 
 $builder = new Builder($queryBuilder);
 
-$builder->paginate(1, 10);
+$builder->paginate($_GET['page'] ?? 1, 10);

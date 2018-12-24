@@ -2,6 +2,8 @@
 
 namespace App\Pagination;
 
+use App\Pagination\Meta;
+
 class Builder
 {
     protected $builder;
@@ -16,7 +18,6 @@ class Builder
         $page = max(1, $page);
 
         $total = $this->builder->execute()->rowCount();
-        dump($total);
 
         $result = $this->builder
                        ->setFirstResult(
@@ -25,6 +26,10 @@ class Builder
                        ->setMaxResults($perPage)
                        ->execute()
                        ->fetchAll();
+
+        $meta = new Meta($page, $perPage, $total);
+
+        dump($meta->page);
     }
 
     protected function getFirstResultIndex($page, $perPage)
