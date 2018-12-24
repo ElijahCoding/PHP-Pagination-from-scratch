@@ -13,15 +13,22 @@ class PlainRenderer extends RendererAbstract
 
         $html = '<ul>';
 
+        if ($iterator->hasPrevious()) {
+            $html .= '<li>
+                <a href="' . $this->query($this->meta->page - 1) . '">Previous</a>
+            </li>';
+        }
+
         foreach ($iterator as $page) {
             if ($iterator->isCurrentPage()) {
                 $html .= '<li>
-                <strong><a href="">' . $page . '</a></strong>
+                    <strong><a href="' . $this->query($page) . '">' . $page . '</a></strong>
+                </li>';
+            } else {
+                $html .= '<li>
+                    <a href="' . $this->query($page) . '">' . $page . '</a>
                 </li>';
             }
-            $html .= '<li>
-                <a href="">' . $page . '</a>
-            </li>';
         }
 
         $html .= '</ul>';
@@ -29,8 +36,8 @@ class PlainRenderer extends RendererAbstract
         return $html;
     }
 
-    protected function query()
+    protected function query($page)
     {
-        
+        return '?page=' . $page;
     }
 }

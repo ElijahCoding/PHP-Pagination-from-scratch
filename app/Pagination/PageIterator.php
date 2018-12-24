@@ -24,6 +24,15 @@ class PageIterator implements Iterator
         return $this->current() === $this->meta->page;
     }
 
+    public function hasPrevious()
+    {
+        if ($this->meta->page <= 0) {
+            return false;
+        }
+
+        return $this->meta->page > 1;
+    }
+
     public function current()
     {
         return $this->pages[$this->position];
