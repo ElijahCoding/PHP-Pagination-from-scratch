@@ -31,6 +31,12 @@ class PlainRenderer extends RendererAbstract
             }
         }
 
+        if ($iterator->hasNext()) {
+            $html .= '<li>
+                <a href="' . $this->query($this->meta->page + 1) . '">Next</a>
+            </li>';
+        }
+
         $html .= '</ul>';
 
         return $html;

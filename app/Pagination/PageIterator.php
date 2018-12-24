@@ -33,6 +33,11 @@ class PageIterator implements Iterator
         return $this->meta->page > 1;
     }
 
+    public function hasNext()
+    {
+        return $this->meta->page < $this->meta->lastPage;
+    }
+
     public function current()
     {
         return $this->pages[$this->position];
