@@ -3,6 +3,7 @@
 namespace App\Pagination;
 
 use App\Pagination\Meta;
+use App\Pagination\Results;
 
 class Builder
 {
@@ -27,9 +28,10 @@ class Builder
                        ->execute()
                        ->fetchAll();
 
-        $meta = new Meta($page, $perPage, $total);
-
-        dump($meta->page);
+        return new Results(
+            $result,
+            new Meta($page, $perPage, $total)
+        );
     }
 
     protected function getFirstResultIndex($page, $perPage)
